@@ -15,15 +15,12 @@ try:
     # assignement_date_regex = '([0-9]{4})\-([A-z]{3})\-([0-9]{1,2})\-(\d{1,2})h(\d{1,2})m'
 
     submission_folder_regex = '.*([0-9]{8}).*([0-9]{4})\-([A-z]{3})\-([0-9]{1,2})\-(\d{1,2})h(\d{1,2})m(\d{1,2})s(\d{1,3})ms'
-    wrong_submission_file_regex = '.*\.README'
+    java_file_regex = '.*\.java[^.]'
 
-    folder_path = "/Users/evermal/Downloads/COMP248-P-2/"
+    folder_path = "/Users/maldonado/Downloads/COMP248-P-2/"
     # walk the folder to remove unwanted files and folders (invisible files and third party) 
     for root, dirs, files in os.walk(folder_path):
-        # print root
-    
-        # print dirs
-
+        
         # select latest submission of student 
         latest_student_id = None
         latest_submission = None
@@ -63,6 +60,7 @@ try:
                     second = match.group(7)
                     latest_submission = time.strptime(year+month+day+hour+minute+second , "%Y%b%d%H%M%S")
                     previous_directory = absolute_subdirname
+                    # print "inside none"
 
                 else:
                     if latest_student_id == match.group(1):
@@ -92,9 +90,14 @@ try:
                         minute = match.group(6)
                         second = match.group(7)
                         current_submission = time.strptime(year+month+day+hour+minute+second , "%Y%b%d%H%M%S")
+                        # print 'inside comparison'
                         if current_submission > latest_submission :
+                            # print 'current maior que latest'
                             shutil.rmtree(previous_directory)
+                            latest_submission = current_submission
+                            previous_directory = absolute_subdirname
                         else :
+                            print 'current menor que latest_submission'
                             shutil.rmtree(absolute_subdirname)
                     else:
                         latest_student_id = None
@@ -104,10 +107,13 @@ try:
         for f in files:
             absolute_file_name = os.path.join(root, f)
             print absolute_file_name
-            if re.match(wrong_submission_file_regex, absolute_file_name) is not None:
+            
+            subprocess.call(["./unar", "-f", "-q", "-D", absolute_file_name, "-o", root])
+
+            if re.match(java_file_regex, absolute_file_name) is None:
                 os.unlink(absolute_file_name)
-        
-            subprocess.call(["unzip", "-u", "-o",  absolute_file_name, "-d", root])
+
+            # subprocess.call(["javac", absolute_file_name, "-d", root])
                     
                 
         
