@@ -12,12 +12,12 @@ import shutil
 import subprocess
 from subprocess import Popen, PIPE
 
-section = 'COMP248-R-2'
-assigment_path = "/Users/evermal/Downloads/COMP248-R-2"
-marked_files_path = "/Users/evermal/Downloads/Assignment1FeedbacksOCT_18"
+section = 'COMP248-Q-2'
+assigment_path = "/Users/evermal/Downloads/COMP248-Q-2"
+marked_files_path = "/Users/evermal/Downloads/COMP248-Q-2"
 
 student_id_regex = '.*([0-9]{8}).*'
-submission_folder_regex = '.*([0-9]{8}).*([0-9]{4})\-([A-z]{3})\-([0-9]{1,2})\-(\d{1,2})h(\d{1,2})m(\d{1,2})s(\d{1,3})ms'
+submission_folder_regex = '(.*([0-9]{8}).*([0-9]{4})\-([A-z]{3})\-([0-9]{1,2})\-(\d{1,2})h(\d{1,2})m(\d{1,2})s(\d{1,3})ms)'
 
 for assigment_root, dirs, files in os.walk(assigment_path):
     for subdirname in dirs:            
@@ -28,8 +28,9 @@ for assigment_root, dirs, files in os.walk(assigment_path):
         if folder_matcher is not None:
             
             # create folder to be uploaded
-            print absolute_subdirname
-            new_absolute_subdirname = absolute_subdirname.replace(section, 'marked_files/'+ section)
+            # print absolute_subdirname
+            regex_absolute_subdirname = folder_matcher.group(1)
+            new_absolute_subdirname = regex_absolute_subdirname.replace(section, 'marked_files/'+ section)
             subprocess.call(["mkdir", "-p",new_absolute_subdirname])
 
             # prepare regex to look to marked file

@@ -9,7 +9,7 @@ import pexpect
 from subprocess import Popen, PIPE
 from xlwings import Workbook, Sheet, Range, Chart
 
-folder_path = "/Users/evermal/Downloads/COMP248-P-2/"
+folder_path = "/Users/evermal/Downloads/COMP248-EE-2/"
 generic_assigment_name = 'GenericAssigmentClass'
 template_feedback_workbook_path = '/Users/evermal/Documents/COMP248-Assigment2/examples/COMP248_A2Feedback_F2015.xlsx'
 
@@ -321,10 +321,10 @@ for root, dirs, files in os.walk(folder_path):
                     print personalized_message_comment
 
                 expected_personalized_messages = 0
-                print '4 - Enter a name; choose to draw a house; pass right values; quit after one house is done'
+                print '4 - Enter a name; choose to draw a house; pass right values; build one house'
                 roof_error = False
                 body_error = False
-                test_case_desc = '4 - Enter a name; choose to draw a house; pass right values; quit after one house is done'
+                test_case_desc = '4 - Enter a name; choose to draw a house; pass right values; build one house'
                 program_test = pexpect.spawn('java -cp d:"'+root+'" GenericAssigmentClass', timeout=1)
                 program_test.logfile_read = sys.stdout
                 index = program_test.expect(['name' , 'Name', pexpect.EOF, pexpect.TIMEOUT])
@@ -341,7 +341,6 @@ for root, dirs, files in os.walk(folder_path):
                 program_test.sendline('yes')
                 index = program_test.expect(['height and width', 'height', pexpect.EOF, pexpect.TIMEOUT])
                 if index == 0:
-                    print 'here'
                     program_test.sendline('10 10')
                 elif index == 1 :
                     program_test.sendline('10')
@@ -434,167 +433,208 @@ for root, dirs, files in os.walk(folder_path):
                     personalized_message_comment = personalized_message_comment + test_case_desc + '- you were expected to generate 3 personalized messages;'
                     print personalized_message_comment
 
-                # print '1.5 - Enter name and right measures quit after two houses - 2 personalized messages expected  - house drawing expected '
-                # program_test = pexpect.spawn('java -cp d:"'+root+'" GenericAssigmentClass', timeout=1)
-                # program_test.logfile_read = sys.stdout
-                # index = program_test.expect(['name' , 'Name', pexpect.EOF, pexpect.TIMEOUT])
-                # if index == 2:
-                #     print "Atencaooooooooooo"
+                expected_personalized_messages = 0
+                test_case_desc = '5 - Enter a name; choose to draw a house; pass right values; build two houses'
+                print test_case_desc 
+                roof_error = False
+                body_error = False
+                program_test = pexpect.spawn('java -cp d:"'+root+'" GenericAssigmentClass', timeout=1)
+                program_test.logfile_read = sys.stdout
+                index = program_test.expect(['name' , 'Name', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 2:
+                    print "Atencaooooooooooo"
                 
-                # program_test.sendline('Everton')
-                # index = program_test.expect(['Everton', pexpect.EOF, pexpect.TIMEOUT])
-                # if index == 0:
-                #     expected_personalized_messages = expected_personalized_messages + 1
+                program_test.sendline('Everton')
+                index = program_test.expect(['Everton', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 0:
+                    expected_personalized_messages = expected_personalized_messages + 1
 
-                # index = program_test.expect(['yes', 'Yes', 'YES' , 'house', pexpect.EOF, pexpect.TIMEOUT])
-                # if index == 5:
-                #     print "Atencaooooooooooo"
+                index = program_test.expect(['yes', 'Yes', 'YES' , 'house', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 5:
+                    print "Atencaooooooooooo"
                 
-                # program_test.sendline('yes')
-                # index = program_test.expect(['height and width', 'height', pexpect.EOF, pexpect.TIMEOUT])
-                # if index == 0:
-                #     program_test.sendline('10 4')
-                # elif index == 1 :
-                #     program_test.sendline('10')
-                #     index = program_test.expect(['width', pexpect.EOF, pexpect.TIMEOUT])
-                #     program_test.sendline('4')
+                program_test.sendline('yes')
+                index = program_test.expect(['height and width', 'height', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 0:
+                    program_test.sendline('10 4')
+                elif index == 1 :
+                    program_test.sendline('10')
+                    index = program_test.expect(['width', pexpect.EOF, pexpect.TIMEOUT])
+                    program_test.sendline('4')
 
-                #     index = program_test.expect_exact([' **', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['/  \\', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['----', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
-                #     index = program_test.expect_exact(['----', pexpect.TIMEOUT])
-                #     if index == 1:
-                #         print 'ERROR'
+                index = program_test.expect_exact([' **', pexpect.TIMEOUT])
+                if index == 1:
+                    roof_error = True
+                index = program_test.expect_exact(['/  \\', pexpect.TIMEOUT])
+                if index == 1:
+                    roof_error = True
+                index = program_test.expect_exact(['----', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|  |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['----', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
 
-                #     index = program_test.expect(['Everton', 'continue', pexpect.EOF, pexpect.TIMEOUT])
-                #     if index == 0:
-                #         expected_personalized_messages = expected_personalized_messages + 1
-                #         program_test.sendline('yes')
-                #     elif index == 1:
-                #         program_test.sendline('yes')
+                index = program_test.expect(['Everton', 'continue', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 0:
+                    expected_personalized_messages = expected_personalized_messages + 1
+                    program_test.sendline('yes')
+                elif index == 1:
+                    program_test.sendline('yes')
 
-                #         index = program_test.expect(['height and width', 'height', pexpect.EOF, pexpect.TIMEOUT])
-                #         if index == 0:
-                #             program_test.sendline('4 10')
-                #         elif index == 1 :
-                #             program_test.sendline('4')
-                #             index = program_test.expect(['width', pexpect.EOF, pexpect.TIMEOUT])
-                #             program_test.sendline('10')
+                index = program_test.expect(['height and width', 'height', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 0:
+                    program_test.sendline('4 10')
+                    #  if the student got through here , he got the repetition process point
+                    repetition_process =  3
+                elif index == 1 :
+                    #  if the student got through here , he got the repetition process point
+                    repetition_process =  3
+                    program_test.sendline('4')
+                    index = program_test.expect(['width', pexpect.EOF, pexpect.TIMEOUT])
+                    program_test.sendline('10')
 
+                index = program_test.expect_exact(['    **', pexpect.TIMEOUT])
+                if index == 1:
+                    roof_error = True
+                index = program_test.expect_exact(['   /  \\', pexpect.TIMEOUT])
+                if index == 1:
+                    roof_error = True
+                index = program_test.expect_exact(['  /    \\', pexpect.TIMEOUT])
+                if index == 1:
+                    roof_error = True
+                index = program_test.expect_exact([' /      \\', pexpect.TIMEOUT])
+                if index == 1:
+                    roof_error = True
+                index = program_test.expect_exact(['/        \\', pexpect.TIMEOUT])
+                if index == 1:
+                    roof_error = True
+                index = program_test.expect_exact(['----------', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|        |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|        |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|        |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['|        |', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
+                index = program_test.expect_exact(['----------', pexpect.TIMEOUT])
+                if index == 1:
+                    body_error = True
 
-                #             index = program_test.expect_exact(['    **', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['   /  \\', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['  /    \\', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact([' /      \\', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['/        \\', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['----------', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['|        |', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['|        |', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['|        |', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['|        |', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
-                #             index = program_test.expect_exact(['----------', pexpect.TIMEOUT])
-                #             if index == 1:
-                #                 print 'ERROR'
+                index = program_test.expect(['Everton', 'continue', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 0:
+                    expected_personalized_messages = expected_personalized_messages + 1
+                    program_test.sendline('no')
+                elif index == 1:
+                    program_test.sendline('no')
+                    index = program_test.expect(['Everton', pexpect.EOF, pexpect.TIMEOUT])
+                    if index == 0:
+                        expected_personalized_messages = expected_personalized_messages + 1
+                
+                house_counter_error = True
+                index = program_test.expect_exact(['2', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 0:
+                    print 'here'
+                    house_counter_error = False
 
-                #             index = program_test.expect(['Everton', 'continue', pexpect.EOF, pexpect.TIMEOUT])
-                #             if index == 0:
-                #                 expected_personalized_messages = expected_personalized_messages + 1
-                #                 program_test.sendline('no')
-                #             elif index == 1: 
-                #                 program_test.sendline('no')
-                #             index = program_test.expect(['Everton', pexpect.EOF, pexpect.TIMEOUT])
-                #             if index == 0:
-                #                 expected_personalized_messages = expected_personalized_messages + 1
+                index = program_test.expect(['Everton', pexpect.EOF, pexpect.TIMEOUT])
+                if index == 0:
+                    expected_personalized_messages = expected_personalized_messages + 1
+
+                if roof_error :
+                    drawing_of_the_house_roof = 0
+                    roof_comment = roof_comment + test_case_desc + '- The number of rows needed to print/draw the roof is half the width of the house;'
+                    print roof_comment
+
+                if body_error :
+                    drawing_of_the_house_body = 0
+                    body_comment = body_comment + test_case_desc + '- The body of the house has height+2 rows. First and last row are drawn using the dash character (-). Each of the rows are made up of width characters where the first and last characters are a | and the rest are spaces.;'
+                    print body_comment
+
+                if house_counter_error :
+                    extra_point = 0
+                    extra_point_comment = extra_point_comment + test_case_desc + '- your program does not keep track of the number of houses built;'
+                    print extra_point_comment
 
                 time.sleep(1)
                 if program_test.isalive() :
-                    print 'ERROR!!!!'
+                    extra_point = 0
+                    extra_point_comment = extra_point_comment + test_case_desc + '- your program does not quit when expected;'
+                    print extra_point_comment
 
+                elif expected_personalized_messages != 4:
+                    personalized_message = 0
+                    personalized_message_comment = personalized_message_comment + test_case_desc + '- you were expected to generate 3 personalized messages;'
+                    print personalized_message_comment
 
-
-                print expected_personalized_messages
                 
             except Exception, e:
-                personalized_message = 0
                 print e
                 pass
 
 
-            # # create feedback workbook
-            # student_id_matcher = re.match(student_id_regex, absolute_file_name)
-            # student_id = student_id_matcher.group(1)
-            # template_workbook = Workbook(template_feedback_workbook_path)
-            # Range('B4').value = student_id
-            # Range('B15').value = personalized_message
-            # Range('B16').value = validation_of_height_and_with
-            # Range('B17').value = drawing_of_the_house_roof
-            # Range('B18').value = drawing_of_the_house_body
-            # Range('B19').value = repetition_process
-            # Range('B20').value = extra_point
-            # Range('D15').value = personalized_message_comment
-            # Range('D16').value = height_and_width_comment
-            # Range('D17').value = roof_comment
-            # Range('D18').value = body_comment
-            # Range('D19').value = comment_5
-            # Range('D20').value = extra_point_comment
-            # student_feedback_workbook_path = root+'/'+student_id+'.xlsx'
-            # template_workbook.save(student_feedback_workbook_path)
-            # student_workbook = Workbook(student_feedback_workbook_path)
-            # template_workbook.close()
-            # student_workbook.close()
+            # create feedback workbook
+            student_id_matcher = re.match(student_id_regex, absolute_file_name)
+            student_id = student_id_matcher.group(1)
+            template_workbook = Workbook(template_feedback_workbook_path)
+            Range('B4').value = student_id
+            Range('B15').value = personalized_message
+            Range('B16').value = height_validation + width_validation
+            Range('B17').value = drawing_of_the_house_roof
+            Range('B18').value = drawing_of_the_house_body
+            Range('B19').value = repetition_process
+            Range('B20').value = extra_point
+            Range('D15').value = personalized_message_comment
+            Range('D16').value = height_and_width_comment
+            Range('D17').value = roof_comment
+            Range('D18').value = body_comment
+            Range('D19').value = comment_5
+            Range('D20').value = extra_point_comment
+            student_feedback_workbook_path = root+'/'+student_id+'.xlsx'
+            template_workbook.save(student_feedback_workbook_path)
+            student_workbook = Workbook(student_feedback_workbook_path)
+            template_workbook.close()
+            
+
+            subprocess.call(["subl", absolute_file_name])
+
+            success = raw_input('success?')
+            if success == 'y':
+                student_workbook.close()
