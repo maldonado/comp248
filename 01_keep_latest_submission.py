@@ -3,7 +3,7 @@ import re
 import time
 import shutil
 
-folder_path = "/Users/evermal/Downloads/COMP248-EE-2"
+folder_path = "/Users/evermal/Downloads/comp248.fall2015/P_emad/COMP248-P-2\ 2"
 
 try:
     submission_folder_regex = '.*([0-9]{8}).*([0-9]{4})\-([A-z]{3})\-([0-9]{1,2})\-(\d{1,2})h(\d{1,2})m(\d{1,2})s(\d{1,3})ms'
