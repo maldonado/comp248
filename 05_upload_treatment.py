@@ -12,9 +12,9 @@ import shutil
 import subprocess
 from subprocess import Popen, PIPE
 
-section = 'COMP248-Q-2'
-assigment_path = "/Users/evermal/Downloads/COMP248-Q-2"
-marked_files_path = "/Users/evermal/Downloads/COMP248-Q-2"
+section = 'COMP248-EE-2'
+assigment_path = "/Users/evermal/Downloads/main.COMP248-EE-2"
+marked_files_path = "/Users/evermal/Downloads/main.COMP248-EE-2"
 
 student_id_regex = '.*([0-9]{8}).*'
 submission_folder_regex = '(.*([0-9]{8}).*([0-9]{4})\-([A-z]{3})\-([0-9]{1,2})\-(\d{1,2})h(\d{1,2})m(\d{1,2})s(\d{1,3})ms)'

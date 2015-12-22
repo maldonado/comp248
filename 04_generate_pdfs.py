@@ -4,8 +4,8 @@ import subprocess
 
 
 
-folder_path = "/Users/evermal/Downloads/COMP248-Q-2/"
-apple_script_path = "/Users/evermal/Downloads/xls_to_pdf.scpt"
+folder_path = "/Users/evermal/Downloads/main.COMP248-EE-2"
+apple_script_path = "/Users/evermal/git/comp248/xls_to_pdf.scpt"
 
 
 for root, dirs, files in os.walk(folder_path):
